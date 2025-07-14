@@ -1,5 +1,6 @@
 // src/figures.rs
 
+use raylib::prelude::Color;
 use crate::framebuffer::Framebuffer;
 use crate::bhm_line::{bhm_line, LineaBonita};
 
@@ -7,7 +8,10 @@ pub fn dibujar_y_rellenar_poligono(
     framebuffer: &mut Framebuffer,
     vertices: &[LineaBonita],
     grosor: i32,
+    color: Color,
 ) {
+    framebuffer.set_current_color(color);
+
     // Dibujar contorno
     for i in 0..vertices.len() {
         bhm_line(

@@ -10,7 +10,13 @@ pub struct LineaBonita {
 
 impl LineaBonita {
     pub fn new(x: i32, y: i32) -> Self {
-        Self { x, y }
+        LineaBonita { x, y }
+    }
+}
+
+impl From<(i32, i32)> for LineaBonita {
+    fn from(tuple: (i32, i32)) -> Self {
+        LineaBonita::new(tuple.0, tuple.1)
     }
 }
 
