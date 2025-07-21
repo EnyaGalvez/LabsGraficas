@@ -1,10 +1,7 @@
-mod framebuffer;
-mod bhm_line;
-mod render;
+// src/draw_cell.rs
 
 use crate::bhm_line::{bhm_line, LineaBonita};
 use crate::framebuffer::Framebuffer;
-use crate::raylib::prelude::*;
 
 pub fn draw_cell(
     framebuffer: &mut Framebuffer, 
@@ -12,12 +9,12 @@ pub fn draw_cell(
     y: i32, 
     size: i32
 ) {
-    let color = fb.get_current_color();
-    for dx in 0..size {
+    let color = framebuffer.get_current_color();
+    for dy in 0..size {
         bhm_line(
-            fb,
-            LineaBonita::new(x, y + dx),
-            LineaBonita::new(x + size - 1, y + dx),
+            framebuffer,
+            LineaBonita::new(x, y + dy),
+            LineaBonita::new(x + size - 1, y + dy),
             1,
         );
     }
