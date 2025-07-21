@@ -3,13 +3,16 @@
 mod framebuffer;
 mod bhm_line;
 mod render;
+mod draw_cell;
+mod game_ofLife;
 
 use raylib::prelude::*;
 use std::thread;
 use std::time::Duration;
+
 use crate::framebuffer::Framebuffer;
-use crate::bhm_line::{bhm_line, LineaBonita};
 use crate::render::render;
+use crate::game_ofLife::GameOfLife;
 
 fn main() {
     let window_width = 1000;
@@ -17,7 +20,7 @@ fn main() {
 
     let (mut window, raylib_thread) = raylib::init()
         .size(window_width, window_height)
-        .title("Figuritas de Colores")
+        .title("Conway's Game of Life")
         .log_level(TraceLogLevel::LOG_WARNING)
         .build();
 
@@ -26,22 +29,19 @@ fn main() {
     framebuffer.set_background_color(Color::BLACK);
     framebuffer.clear();
 
-    let mut translate_x: f32 = 0.0;
-    let mut translate_y: f32 = 0.0;
+    let mut game = GameOfLife::new(8);
 
     while !window.window_should_close() {
         framebuffer.clear();
 
-        translate_x += 1.0;
-        translate_y += 1.0;
-
-        render(&mut framebuffer, translate_x, translate_y);
+        game.update();
+        game.render(&mut framebuffer);
 
         let mut d = window.begin_drawing(&raylib_thread);
         d.clear_background(Color::WHITE);
         framebuffer.swap_buffers(&mut d, &raylib_thread);
         
-        thread::sleep(Duration::from_millis(16));
+        std::thread::sleep(std::time::Duration::from_millis(16));
     }
 }
 
