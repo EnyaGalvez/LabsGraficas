@@ -1,7 +1,0 @@
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/lib/raylib.lib
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/include/raylib.h
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/include/rlgl.h
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/include/raymath.h
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/lib/pkgconfig/raylib.pc
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/lib/cmake/raylib/raylib-config-version.cmake
-C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out/lib/cmake/raylib/raylib-config.cmake
