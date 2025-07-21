@@ -1,0 +1,13 @@
+prefix=C:/Users/galve/a2c2e/labsGraficasCompu/lab2_GameOfLife/target/debug/build/raylib-sys-525139d20e733937/out
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: raylib
+Description: A simple and easy-to-use library to enjoy videogames programming
+URL: https://github.com/raysan5/raylib
+Version: 5.5.0
+Libs: -L"${libdir}" -lraylib 
+Libs.private: 
+Requires.private: 
+Cflags: -I"${includedir}"

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\galve\a2c2e\labsGraficasCompu\lab2_GameOfLife\target\debug\build\raylib-sys-525139d20e733937\out\build\CMakeFiles\656a108cb4f222f7114da58e5a19e3d4\PACKAGE_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A75E6573-9596-381E-82E2-0D17EF602EA6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

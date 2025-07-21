@@ -1,0 +1,1 @@
+C:\Users\galve\a2c2e\labsGraficasCompu\lab2_GameOfLife\target\debug\lab2_GameOfLife.exe: C:\Users\galve\a2c2e\labsGraficasCompu\lab2_GameOfLife\src\bhm_line.rs C:\Users\galve\a2c2e\labsGraficasCompu\lab2_GameOfLife\src\framebuffer.rs C:\Users\galve\a2c2e\labsGraficasCompu\lab2_GameOfLife\src\main.rs C:\Users\galve\a2c2e\labsGraficasCompu\lab2_GameOfLife\src\render.rs
