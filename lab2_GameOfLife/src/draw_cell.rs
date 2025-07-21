@@ -2,9 +2,9 @@ mod framebuffer;
 mod bhm_line;
 mod render;
 
-use bhm_line::{bhm_line, LineaBonita};
-use framebuffer::Framebuffer;
-use raylib::prelude::*;
+use crate::bhm_line::{bhm_line, LineaBonita};
+use crate::framebuffer::Framebuffer;
+use crate::raylib::prelude::*;
 
 pub fn draw_cell(
     framebuffer: &mut Framebuffer, 
