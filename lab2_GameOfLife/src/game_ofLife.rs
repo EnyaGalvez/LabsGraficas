@@ -2,8 +2,8 @@ use crate::draw_cell::draw_cell;
 use crate::render::render;
 use crate::framebuffer::Framebuffer;
 
-const WIDTH: usize = 100;
-const HEIGHT: usize = 80;
+const WIDTH: usize = 80;
+const HEIGHT: usize = 60;
 
 pub struct GameOfLife {
     pub grid: [[u8; WIDTH]; HEIGHT],
@@ -15,62 +15,39 @@ impl GameOfLife {
     pub fn new(cell_size: i32) -> Self {
         let mut grid = [[0u8; WIDTH]; HEIGHT];
 
-        // BLOCK
-        let block = [(1, 1), (2, 1), (1, 2), (2, 2)];
-        for (x, y) in block {
-            grid[y][x] = 1;
-        }
-
-        // BEE-HIVE
-        let beehive = [(5, 1), (6, 1), (4, 2), (7, 2), (5, 3), (6, 3)];
-        for (x, y) in beehive {
-            grid[y][x] = 1;
-        }
-
-        // LOAF
-        let loaf = [(10, 1), (11, 1), (9, 2), (12, 2), (10, 3), (12, 3), (11, 4)];
-        for (x, y) in loaf {
-            grid[y][x] = 1;
-        }
-
-        // BLINKER (horizontal)
-        let blinker = [(1, 6), (2, 6), (3, 6)];
-        for (x, y) in blinker {
-            grid[y][x] = 1;
-        }
-
-        // TOAD
-        let toad = [(6, 6), (7, 6), (8, 6), (5, 7), (6, 7), (7, 7)];
-        for (x, y) in toad {
-            grid[y][x] = 1;
-        }
-
-        // BEACON
-        let beacon = [(10, 6), (11, 6), (10, 7), (13, 8), (12, 9), (13, 9)];
-        for (x, y) in beacon {
-            grid[y][x] = 1;
-        }
-
-        // GLIDER
-        let glider = [(1, 12), (2, 13), (3, 11), (3, 12), (3, 13)];
-        for (x, y) in glider {
-            grid[y][x] = 1;
-        }
-
-        // LWSS (Lightweight spaceship)
-        let lwss = [(5, 12), (8, 12), (9, 13), (9, 14), (5, 15), (6, 15), (7, 15), (8, 15)];
-        for (x, y) in lwss {
-            grid[y][x] = 1;
-        }
-
-        // MWSS (Middleweight spaceship)
-        let mwss = [
-            (12, 12), (15, 12),
-            (11, 13), (11, 14), (15, 14),
-            (11, 15), (12, 15), (13, 15), (14, 15)
+        let offset = [
+        (0, 0),     // top-left
+        (20, 0),    // top-mid
+        (40, 0),    // top-right
+        (0, 20),    // mid-left
+        (20, 20),   // center
+        (40, 20),   // mid-right
+        (0, 40),    // bottom-left
+        (20, 40),   // bottom-mid
+        (40, 40),   // bottom-right
         ];
-        for (x, y) in mwss {
-            grid[y][x] = 1;
+
+        let patterns: Vec<Vec<(usize, usize)>> = vec![
+        vec![(1, 1), (2, 1), (1, 2), (2, 2)], // BLOCK
+        vec![(5, 1), (6, 1), (4, 2), (7, 2), (5, 3), (6, 3)], // BEE-HIVE
+        vec![(10, 1), (11, 1), (9, 2), (12, 2), (10, 3), (12, 3), (11, 4)], // LOAF
+        vec![(1, 6), (2, 6), (3, 6)], // BLINKER
+        vec![(6, 6), (7, 6), (8, 6), (5, 7), (6, 7), (7, 7)], // TOAD
+        vec![(10, 6), (11, 6), (10, 7), (13, 8), (12, 9), (13, 9)], // BEACON
+        vec![(1, 12), (2, 13), (3, 11), (3, 12), (3, 13)], // GLIDER
+        vec![(5, 12), (8, 12), (9, 13), (9, 14), (5, 15), (6, 15), (7, 15), (8, 15)], // LWSS
+        vec![(12, 12), (15, 12), (11, 13), (11, 14), (15, 14),(11, 15), (12, 15), (13, 15), (14, 15)], // MWSS 
+        ];
+
+        for (i, pattern) in patterns.iter().enumerate() {
+            let (ox, oy) = offset[i];
+            for (x, y) in pattern.iter() {
+                let gx = ox + x;
+                let gy = oy + y;
+                if gx < WIDTH && gy < HEIGHT {
+                    grid[gy][gx] = 1;
+                }
+            }
         }
 
         Self {

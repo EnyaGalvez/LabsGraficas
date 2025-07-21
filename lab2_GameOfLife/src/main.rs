@@ -11,7 +11,6 @@ use std::thread;
 use std::time::Duration;
 
 use crate::framebuffer::Framebuffer;
-use crate::render::render;
 use crate::game_ofLife::GameOfLife;
 
 fn main() {
@@ -29,7 +28,7 @@ fn main() {
     framebuffer.set_background_color(Color::BLACK);
     framebuffer.clear();
 
-    let mut game = GameOfLife::new(8);
+    let mut game = GameOfLife::new(10);
 
     while !window.window_should_close() {
         framebuffer.clear();
@@ -41,7 +40,7 @@ fn main() {
         d.clear_background(Color::WHITE);
         framebuffer.swap_buffers(&mut d, &raylib_thread);
         
-        std::thread::sleep(std::time::Duration::from_millis(16));
+        std::thread::sleep(Duration::from_millis(20));
     }
 }
 
