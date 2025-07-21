@@ -18,5 +18,5 @@ pub fn draw_cell(
             1,
         );
     }
-    fb.set_current_color(color);
+    framebuffer.set_current_color(color);
 }
