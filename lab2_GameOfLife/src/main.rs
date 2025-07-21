@@ -15,8 +15,8 @@ use crate::render::render;
 use crate::game_ofLife::GameOfLife;
 
 fn main() {
-    let window_width = 1000;
-    let window_height = 800;
+    let window_width = 800;
+    let window_height = 600;
 
     let (mut window, raylib_thread) = raylib::init()
         .size(window_width, window_height)

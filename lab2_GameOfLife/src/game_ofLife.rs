@@ -15,23 +15,63 @@ impl GameOfLife {
     pub fn new(cell_size: i32) -> Self {
         let mut grid = [[0u8; WIDTH]; HEIGHT];
 
-        // Patrón: Blinker (horizontal)
-        grid[10][10] = 1;
-        grid[10][11] = 1;
-        grid[10][12] = 1;
+        // BLOCK
+        let block = [(1, 1), (2, 1), (1, 2), (2, 2)];
+        for (x, y) in block {
+            grid[y][x] = 1;
+        }
 
-        // Patrón: Glider
-        grid[1][2] = 1;
-        grid[2][3] = 1;
-        grid[3][1] = 1;
-        grid[3][2] = 1;
-        grid[3][3] = 1;
+        // BEE-HIVE
+        let beehive = [(5, 1), (6, 1), (4, 2), (7, 2), (5, 3), (6, 3)];
+        for (x, y) in beehive {
+            grid[y][x] = 1;
+        }
 
-        // Patrón: Block
-        grid[20][20] = 1;
-        grid[20][21] = 1;
-        grid[21][20] = 1;
-        grid[21][21] = 1;
+        // LOAF
+        let loaf = [(10, 1), (11, 1), (9, 2), (12, 2), (10, 3), (12, 3), (11, 4)];
+        for (x, y) in loaf {
+            grid[y][x] = 1;
+        }
+
+        // BLINKER (horizontal)
+        let blinker = [(1, 6), (2, 6), (3, 6)];
+        for (x, y) in blinker {
+            grid[y][x] = 1;
+        }
+
+        // TOAD
+        let toad = [(6, 6), (7, 6), (8, 6), (5, 7), (6, 7), (7, 7)];
+        for (x, y) in toad {
+            grid[y][x] = 1;
+        }
+
+        // BEACON
+        let beacon = [(10, 6), (11, 6), (10, 7), (13, 8), (12, 9), (13, 9)];
+        for (x, y) in beacon {
+            grid[y][x] = 1;
+        }
+
+        // GLIDER
+        let glider = [(1, 12), (2, 13), (3, 11), (3, 12), (3, 13)];
+        for (x, y) in glider {
+            grid[y][x] = 1;
+        }
+
+        // LWSS (Lightweight spaceship)
+        let lwss = [(5, 12), (8, 12), (9, 13), (9, 14), (5, 15), (6, 15), (7, 15), (8, 15)];
+        for (x, y) in lwss {
+            grid[y][x] = 1;
+        }
+
+        // MWSS (Middleweight spaceship)
+        let mwss = [
+            (12, 12), (15, 12),
+            (11, 13), (11, 14), (15, 14),
+            (11, 15), (12, 15), (13, 15), (14, 15)
+        ];
+        for (x, y) in mwss {
+            grid[y][x] = 1;
+        }
 
         Self {
             grid,
