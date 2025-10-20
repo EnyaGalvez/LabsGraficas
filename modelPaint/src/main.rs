@@ -63,7 +63,7 @@ fn main() -> Result<()> {
     let video_subsystem = sdl.video().map_err(|e| anyhow::anyhow!(e))?;
 
     let window = video_subsystem
-        .window("Software Renderer", SCREEN_WIDTH, SCREEN_HEIGHT)
+        .window("Nave Espacial en el vacio", SCREEN_WIDTH, SCREEN_HEIGHT)
         .position_centered()
         .opengl()
         .build()

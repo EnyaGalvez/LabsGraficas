@@ -102,7 +102,6 @@ pub fn triangle_filled_bary(
     let h_i = h as i32;
 
     let area2 = (b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x);
-    if area2 >= 0.0 { return Ok(()); }
 
     let (min_x, max_x, min_y, max_y) = bbox3(a, b, c, w_i, h_i);
 
@@ -117,18 +116,30 @@ pub fn triangle_filled_bary(
 
                 let idx = (y * w as i32 + x) as usize;
                 if z < zbuf[idx] {
-                    let near_color = SdlColor::RGB(255, 204, 153);
-                    let far_color  = SdlColor::RGB(204, 51, 0);
+                    zbuf[idx] = z;
 
-                    let z_min = -1.0;
-                    let z_max = 1.0;
-                    let t = ((z - z_min) / (z_max - z_min)).clamp(0.0, 1.0).powf(0.4);
+                    let near_color = base_color;
+                    let far_color  = SdlColor::RGB(102, 153, 153);
 
-                    let r = (near_color.r as f32 * (1.0 - t) + far_color.r as f32 * t) as u8;
-                    let g = (near_color.g as f32 * (1.0 - t) + far_color.g as f32 * t) as u8;
-                    let b = (near_color.b as f32 * (1.0 - t) + far_color.b as f32 * t) as u8;
+                    let tri_zmin = a.z.min(b.z).min(c.z);
+                    let tri_zmax = a.z.max(b.z).max(c.z);
+                    let mut t = ((z - tri_zmin) / (tri_zmax - tri_zmin + 1e-6)).clamp(0.0, 1.0);
 
-                    let color = SdlColor::RGB(r, g, b);
+                    let edge0 = 0.10;
+                    let edge1 = 0.60;
+                    t = ((t - edge0) / (edge1 - edge0)).clamp(0.0, 1.0);
+
+                    t = t.powf(0.4);
+
+                    let mix = |a: u8, b: u8, tt: f32| -> u8 {
+                        ((a as f32) * (1.0 - tt) + (b as f32) * tt) as u8
+                    };
+
+                    let color = SdlColor::RGB(
+                        mix(near_color.r, far_color.r, t),
+                        mix(near_color.g, far_color.g, t),
+                        mix(near_color.b, far_color.b, t),
+                    );
 
                     point(canvas, vec3(x as f32, y as f32, z), color)?;
                 }
